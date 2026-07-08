@@ -1,113 +1,91 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { ArrowUpRight, Lock } from 'lucide-react';
 
-const SCOOTER_GUY = 'https://res.cloudinary.com/dwbjb3svx/image/upload/v1783343016/blog_assets/qoukhngvynpkitn4c9fq.png';
-
-const easeStd = [0.22, 1, 0.36, 1];
-
-const stagger = {
-  hidden: {},
-  show: { transition: { staggerChildren: 0.08 } },
-};
-
-const line = {
-  hidden: { opacity: 0, y: 30 },
-  show: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.8, ease: easeStd },
-  },
-};
+const ASSET_URL = 'https://res.cloudinary.com/dwbjb3svx/image/upload/v1783343016/blog_assets/qoukhngvynpkitn4c9fq.png';
 
 export default function Hero() {
   return (
-    <section className="relative w-full bg-[#F9F3E3] overflow-hidden pt-24 pb-20 md:pt-40 md:pb-32 min-h-screen flex items-center">
-      <div className="mx-auto max-w-[1280px] px-6 md:px-12 w-full">
+    <section className="stage-overflow-fix min-h-screen bg-[#F9F3E3] flex flex-col">
+      
+      {/* ── DESKTOP ASSET (TITAN-CLEARANCE & SWEET SPOT) ── */}
+      <div className="hidden md:block absolute inset-0 z-10 pointer-events-none overflow-hidden">
+        <motion.img
+          src={ASSET_URL}
+          initial={{ opacity: 0, x: 150 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
+          className="absolute 
+                     /* Head Level at 36%, Nudged Right to 32% Translation, Scale 1.35 */
+                     top-[36%] right-0 w-[135%] max-w-none translate-x-[32%] origin-right
+                     h-auto object-contain object-right-top drop-shadow-[0_80px_80px_rgba(0,0,0,0.18)]"
+        />
+      </div>
+
+      {/* ── CONTENT PILLAR (CENTERED) ── */}
+      <div className="relative z-20 mx-auto max-w-7xl px-6 w-full pt-20 md:pt-0 md:min-h-screen flex flex-col justify-center">
         
-        <div className="flex flex-col md:grid md:grid-cols-12 md:gap-x-8 lg:gap-x-12 items-center">
+        {/* HARD GUTTER: max-w-[520px] ensures zero collision with the asset */}
+        <div className="w-full md:max-w-[520px]">
+          
+          {/* 1. HEADLINE */}
+          <motion.h1 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="text-[44px] md:text-[88px] leading-[0.85] tracking-[-0.05em] font-[900] text-[#1A1A1A] mb-6"
+          >
+            Your favorite food,<br />
+            delivered<br />
+            your home
+          </motion.h1>
+          
+          {/* 2. SUBTEXT */}
+          <motion.p 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.2 }}
+            className="text-[17px] md:text-[20px] font-medium text-[#1A1A1A]/50 max-w-[420px] mb-2 md:mb-12 leading-tight"
+          >
+            Food, drinks, groceries, and more available for delivery and pickup.
+          </motion.p>
 
-          {/* ── LEFT: THE EDITORIAL PILLAR (Cols 1-6) ── */}
-          <div className="md:col-span-6 lg:col-span-5 flex flex-col z-20">
-            
-            <motion.h1
-              variants={stagger}
-              initial="hidden"
-              animate="show"
-              className="flex flex-col font-sans font-black select-none mb-10"
-            >
-              <motion.span variants={line} className="text-[38px] md:text-[64px] lg:text-[88px] leading-[0.9] tracking-[-0.04em] text-[#111111] whitespace-nowrap">
-                Your favorite food,
-              </motion.span>
-              <motion.span variants={line} className="text-[38px] md:text-[64px] lg:text-[88px] leading-[0.9] tracking-[-0.04em] text-[#111111] whitespace-nowrap">
-                delivered
-              </motion.span>
-              <motion.span variants={line} className="text-[38px] md:text-[64px] lg:text-[88px] leading-[0.9] tracking-[-0.04em] text-[#111111] whitespace-nowrap">
-                your home
-              </motion.span>
-            </motion.h1>
+          {/* 3. MOBILE ASSET STAGE (LOCKED) */}
+          <div className="md:hidden relative w-full h-[340px] mb-4 pointer-events-none">
+            <motion.img 
+              src={ASSET_URL}
+              initial={{ opacity: 0, scale: 0.8, x: 50 }}
+              animate={{ opacity: 1, scale: 1, x: 0 }}
+              className="absolute right-[-40%] bottom-[-10%] w-[200%] max-w-none h-full object-contain object-right-bottom drop-shadow-[0_40px_40px_rgba(0,0,0,0.12)]"
+            />
+          </div>
 
-            {/* ── MOBILE VISUAL UNIT (High Nudge + Massive Scale) ── */}
-            <div className="md:hidden relative w-full h-[400px] mt-4 mb-8 pointer-events-none">
-              <div className="absolute bottom-[30%] right-[-20%] w-[140%] h-[120%]">
-                <img src={SCOOTER_GUY} alt="" className="w-full h-full object-contain object-right-bottom drop-shadow-2xl" />
-              </div>
+          {/* 4. SCARCITY PILLS */}
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 mb-8">
+            {/* PILL 1: TIMER */}
+            <div className="bg-white px-6 py-4 rounded-2xl shadow-xl border border-white flex items-center justify-between sm:justify-start gap-4">
+              {["03", "23", "45", "59"].map((val, i) => (
+                <React.Fragment key={i}>
+                  <span className="text-2xl md:text-3xl font-[900] tabular-nums text-[#1A1A1A]">{val}</span>
+                  {i < 3 && <span className="text-xl font-bold text-[#1A1A1A]/10">:</span>}
+                </React.Fragment>
+              ))}
             </div>
 
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.3 }}
-              className="relative z-30"
-            >
-              <p className="font-sans font-medium text-[15px] lg:text-[18px] leading-[1.8] text-[#3A3A3A] max-w-[440px] mb-10">
-                Food, drinks, groceries, and more available for delivery and pickup.
-              </p>
-
-              {/* SCARCITY LEDGER */}
-              <div className="flex flex-col gap-6">
-                <div className="bg-white p-2 pl-6 md:pl-10 rounded-[40px] shadow-[0_32px_64px_-15px_rgba(0,0,0,0.1)] flex items-center gap-4 md:gap-10 border border-white w-full sm:w-fit">
-                  <div className="flex items-center gap-3 md:gap-5 py-3">
-                    {["03", "23", "45", "59"].map((val, i) => (
-                      <div key={i} className="flex items-center gap-3 md:gap-5">
-                        <span className="text-2xl md:text-4xl font-black tabular-nums text-[#111111]">{val}</span>
-                        {i < 3 && <span className="text-xl md:text-3xl font-bold text-[#111111]/10">:</span>}
-                      </div>
-                    ))}
-                  </div>
-                  <button className="bg-[#F8991D] text-white px-8 md:px-12 py-5 md:py-7 rounded-[32px] font-black text-sm md:text-lg shadow-xl shadow-[#F8991D]/20">
-                    Place Order ↗
-                  </button>
-                </div>
-                <div className="flex items-center gap-3 px-6 text-[10px] md:text-xs font-bold text-[#111111]/30 uppercase tracking-[0.2em]">
-                  <span>🔒</span> Limited Time. Only a Few Spots Available.
-                </div>
-              </div>
-            </motion.div>
+            {/* PILL 2: CTA (HARD-FIXED PILL SHAPE) */}
+            <button className="bg-[#F8991D] text-white px-10 py-5 md:py-6 rounded-2xl font-[900] text-lg flex flex-row items-center justify-center gap-3 shadow-2xl shadow-[#F8991D]/40 active:scale-95 transition-transform whitespace-nowrap min-w-fit">
+              Place Order
+              <ArrowUpRight className="w-6 h-6" />
+            </button>
           </div>
 
-          {/* ── RIGHT: DESKTOP VISUAL ANCHOR (EXTREME NUDGE: bottom-[40%] + EXTREME SIZE: h-[170%]) ── */}
-          <div className="hidden md:block md:col-span-6 lg:col-span-7 relative min-h-[650px] pointer-events-none z-10">
-            
-            {/* THE GLOW */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[110%] aspect-square bg-[#F8991D]/5 rounded-full blur-[120px] z-0" />
-
-            {/* CHARACTER BOUNDARY EXTENSION - CINEMATIC OVERLAY */}
-            <motion.div
-              initial={{ opacity: 0, x: 60, y: 40 }}
-              animate={{ opacity: 1, x: 0, y: 0 }}
-              transition={{ duration: 1.2, delay: 0.15, ease: easeStd }}
-              className="absolute right-[-35%] bottom-[40%] w-[170%] h-[170%] z-10"
-            >
-              <img 
-                src={SCOOTER_GUY} 
-                alt="4Foodies Delivery" 
-                className="w-full h-full object-contain object-right-bottom drop-shadow-[0_50px_50px_rgba(0,0,0,0.2)]" 
-              />
-            </motion.div>
+          {/* 5. SCARCITY FOOTER */}
+          <div className="flex items-center gap-2 px-1 text-[11px] font-black text-[#1A1A1A]/30 uppercase tracking-[0.2em]">
+            <Lock className="w-3 h-3" />
+            Limited Time. Only a Few Spots Available.
           </div>
-
         </div>
       </div>
+
     </section>
   );
 }

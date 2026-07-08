@@ -1,59 +1,40 @@
 import React from 'react';
-import { motion } from 'framer-motion';
+import { ArrowUpRight } from 'lucide-react';
 
-const PHONE_MOCK = 'https://res.cloudinary.com/dwbjb3svx/image/upload/v1783343016/blog_assets/qoukhngvynpkitn4c9fq.png';
+const MOCKUP_ASSET = 'https://res.cloudinary.com/dwbjb3svx/image/upload/v1783511070/blog_assets/hobynqaueryv5frnwky8.png';
 
 export default function AppDownload() {
   return (
-    <section className="w-full bg-white py-20 md:py-32 overflow-hidden">
-      <div className="mx-auto max-w-[1280px] px-6 md:px-12">
+    <section className="w-full bg-white py-16 md:py-32 px-6">
+      <div className="max-w-7xl mx-auto flex flex-col min-[740px]:flex-row items-center gap-12 md:gap-24">
         
-        {/* Use flex-col-reverse on mobile so text stays on top, image on bottom */}
-        <div className="flex flex-col-reverse md:grid md:grid-cols-12 md:gap-x-16 items-center">
-
-          {/* LEFT: THE VISUAL UNIT (Cols 1-6) */}
-          <div className="md:col-span-6 relative mt-12 md:mt-0">
-            <motion.div 
-              initial={{ opacity: 0, x: -40 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              className="relative w-full aspect-square md:aspect-auto md:h-[600px] bg-[#F9F3E3] rounded-[48px] border border-black/5 overflow-hidden flex items-end justify-center"
-            >
-              {/* Increased scale to 150% and removed absolute centering */}
-              <img 
-                src={PHONE_MOCK} 
-                alt="App Mockup" 
-                className="h-[110%] w-auto object-contain object-bottom translate-y-10 drop-shadow-2xl" 
-              />
-            </motion.div>
-          </div>
-
-          {/* RIGHT: THE EDITORIAL CONTENT (Cols 7-12) */}
-          <div className="md:col-span-6 flex flex-col z-20">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-            >
-              <h2 className="text-[38px] md:text-[56px] leading-[0.95] font-black text-[#111111] tracking-[-0.04em] mb-8">
-                Connecting our use with iOS & Android apps
-              </h2>
-              <p className="text-[16px] md:text-[18px] font-medium leading-[1.8] text-[#555555] mb-10 max-w-[480px]">
-                Download the 4Foodies application today and access real-time order tracking, localized menus, and integrated checkout systems.
-              </p>
-              
-              <div className="flex flex-wrap gap-4">
-                <button className="bg-[#111111] text-white px-10 py-5 rounded-2xl font-bold text-sm hover:scale-105 transition-all shadow-xl shadow-black/10">
-                  App Store ↗
-                </button>
-                <button className="bg-[#F8991D] text-white px-10 py-5 rounded-2xl font-bold text-sm hover:scale-105 transition-all shadow-xl shadow-[#F8991D]/20">
-                  Google Play ↗
-                </button>
-              </div>
-            </motion.div>
-          </div>
-
+        {/* LEFT: MOCKUP */}
+        <div className="w-full min-[740px]:w-1/2 flex justify-center">
+          <img 
+            src={MOCKUP_ASSET} 
+            alt="App Mockup" 
+            className="w-full max-w-[500px] h-auto object-contain"
+          />
         </div>
+
+        {/* RIGHT: CONTENT */}
+        <div className="w-full min-[740px]:w-1/2 flex flex-col items-start">
+          {/* REDUCED WEIGHT & 3-LINE CONSTRAINT */}
+          <h2 className="text-[28px] md:text-[40px] font-medium text-[#1A1A1A] leading-[1.2] tracking-tight mb-8 max-w-[540px]">
+            Connecting our user with iOS & Android apps. Download from iTune & Play store
+          </h2>
+          
+          <p className="text-[#1A1A1A]/50 text-[15px] md:text-[17px] leading-relaxed mb-10 max-w-[480px]">
+            Pick one of our stock themes, or create your custom theme with the most advanced theme editor on any online survey building tool. We're driven beyond just finishing the projects. We want to find solutions using our website & apps.
+          </p>
+
+          {/* BLACK BUTTON */}
+          <button className="bg-[#1A1A1A] text-white px-9 py-4 rounded-2xl font-bold text-[16px] flex items-center gap-3 transition-transform active:scale-95">
+            Place Order
+            <ArrowUpRight size={20} strokeWidth={2} />
+          </button>
+        </div>
+
       </div>
     </section>
   );

@@ -1,13 +1,26 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
-@layer utilities {
-  .scrollbar-hide {
-    -ms-overflow-style: none;
-    scrollbar-width: none;
+@theme {
+  --color-brand-orange: #F8991D;
+  --color-brand-cream: #F9F3E3;
+  --color-brand-charcoal: #1A1A1A;
+  --font-sans: "Inter", "Outfit", system-ui, sans-serif;
+}
+
+@layer base {
+  body {
+    background-color: var(--color-brand-cream);
+    color: var(--color-brand-charcoal);
+    font-family: var(--font-sans);
+    margin: 0;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
   }
-  .scrollbar-hide::-webkit-scrollbar {
-    display: none;
-  }
+}
+
+@utility stage-overflow-fix {
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
 }

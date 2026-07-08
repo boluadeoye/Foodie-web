@@ -1,23 +1,22 @@
 import React from 'react';
-import { motion } from 'framer-motion';
 
-const partners = ["Slack", "Lego", "Cinema", "Subway", "Qube", "Vercel"];
+const LOGOS = ["Slack", "Lego", "Cinema", "Subway", "Qube", "Vercel"];
 
 export default function SocialProof() {
   return (
-    <section className="w-full bg-[#F9F3E3] py-12 border-t border-b border-black/5">
-      <div className="mx-auto max-w-[1280px] px-6 md:px-12 text-center">
-        <p className="text-xs font-black tracking-[0.25em] uppercase text-[#111111]/40 mb-8">
-          70,000+ people already use our app on a daily basis
+    <div className="w-full bg-[#F9F3E3] pt-20 pb-10">
+      <div className="max-w-7xl mx-auto px-6">
+        <p className="text-center text-[11px] md:text-[13px] font-bold tracking-[0.2em] text-gray-400 uppercase mb-10">
+          70,000+ PEOPLE ALREADY USE OUR APP ON A DAILY BASIS
         </p>
-        <div className="flex flex-wrap justify-center items-center gap-10 md:gap-16 opacity-50">
-          {partners.map((partner, i) => (
-            <span key={i} className="text-lg md:text-2xl font-black tracking-tight text-[#111111] hover:text-[#F8991D] transition-colors cursor-pointer select-none">
-              {partner}
+        <div className="flex flex-wrap justify-center md:justify-between items-center gap-8 md:gap-4 opacity-40 grayscale">
+          {LOGOS.map((logo) => (
+            <span key={logo} className="text-2xl md:text-3xl font-bold text-[#1A1A1A]">
+              {logo}
             </span>
           ))}
         </div>
       </div>
-    </section>
+    </div>
   );
 }

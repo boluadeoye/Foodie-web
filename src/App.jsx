@@ -5,22 +5,24 @@ import AvailableFood from './components/AvailableFood';
 import HowItWorks from './components/HowItWorks';
 import SupermanDelivery from './components/SupermanDelivery';
 import WhyChooseUs from './components/WhyChooseUs';
-import SocialProof from './components/SocialProof';
 import FAQ from './components/FAQ';
+import Testimonials from './components/Testimonials';
 import AppDownload from './components/AppDownload';
+import FooterCTA from './components/FooterCTA';
 
 function App() {
   return (
-    <main className="min-h-screen bg-[#F9F3E3]">
+    <main className="bg-white min-h-screen font-sans selection:bg-[#F8991D] selection:text-white overflow-x-hidden">
       <Navbar />
       <Hero />
       <AvailableFood />
       <HowItWorks />
       <SupermanDelivery />
-      <SocialProof />
       <WhyChooseUs />
       <FAQ />
+      <Testimonials />
       <AppDownload />
+      <FooterCTA />
     </main>
   );
 }

@@ -1,54 +1,95 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 
-const ROCKET_GUY = 'https://res.cloudinary.com/dwbjb3svx/image/upload/v1783343016/blog_assets/qoukhngvynpkitn4c9fq.png';
+const ROCKET_GUY = 'https://res.cloudinary.com/dwbjb3svx/image/upload/v1783491956/blog_assets/xszqelgsaxmfmn5xgzaf.png';
 
-const points = [
-  { num: "01", title: "Easy to use application", desc: "Our intuitive user interface makes ordering food a seamless experience." },
-  { num: "02", title: "Deliver food with a smile", desc: "Our dedicated riders prioritize friendly, prompt, and secure deliveries." },
-  { num: "03", title: "100% reliable with privacy", desc: "We protect your data and secure every transaction with end-to-end privacy." },
+const features = [
+  {
+    id: "01",
+    title: "Easy to use application",
+    desc: "We're driven beyond just finishing the projects. We want to find solutions using our website & apps."
+  },
+  {
+    id: "02",
+    title: "Deliver Food within 30 min",
+    desc: "We're driven beyond just finishing the projects. We want to find solutions using our website & apps."
+  },
+  {
+    id: "03",
+    title: "100% Reliable with Privacy",
+    desc: "We're driven beyond just finishing the projects. We want to find solutions using our website & apps."
+  }
 ];
 
 export default function SupermanDelivery() {
   return (
-    <section className="relative w-full bg-white overflow-hidden py-20 md:py-32">
-      <div className="mx-auto max-w-[1280px] px-6 md:px-12">
-        <div className="flex flex-col md:grid md:grid-cols-12 md:gap-x-12 items-center">
+    <section className="w-full bg-white py-16 md:py-24 overflow-hidden">
+      <div className="mx-auto max-w-7xl px-6 md:px-12">
+        
+        {/* ── GRID SYSTEM: ENFORCED 740PX BREAKPOINT ── */}
+        <div className="grid grid-cols-1 min-[740px]:grid-cols-2 gap-12 lg:gap-20 items-center">
+          
+          {/* ── LEFT COLUMN: CLEAN ASSET (NO BACKGROUND) ── */}
+          <motion.div 
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            className="relative flex justify-center items-center"
+          >
+            <img 
+              src={ROCKET_GUY} 
+              alt="Delivery Rocket" 
+              className="w-full max-w-[500px] h-auto object-contain drop-shadow-xl"
+            />
+          </motion.div>
 
-          {/* LEFT: THE 3D VISUAL */}
-          <div className="relative md:col-span-6 min-h-[400px] md:min-h-[550px] w-full pointer-events-none mb-12 md:mb-0">
-            <motion.div 
-              initial={{ opacity: 0, x: -50 }}
-              whileInView={{ opacity: 1, x: 0 }}
+          {/* ── RIGHT COLUMN: LIGHT TYPOGRAPHY ── */}
+          <div className="flex flex-col">
+            <motion.h2 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="absolute left-[-20%] w-[130%] h-full"
+              className="text-[24px] min-[740px]:text-[28px] font-semibold leading-tight text-brand-charcoal mb-6 max-w-[460px]"
             >
-              <img 
-                src={ROCKET_GUY} 
-                alt="Superman Delivery" 
-                className="w-full h-full object-contain rotate-[-12deg] drop-shadow-2xl" 
-              />
-            </motion.div>
-          </div>
+              We deliver our products as fast as superman can do
+            </motion.h2>
 
-          {/* RIGHT: THE CONTENT */}
-          <div className="md:col-span-6 flex flex-col z-20">
-            <h2 className="text-[32px] md:text-[48px] lg:text-[56px] leading-[0.95] font-black text-[#111111] tracking-tight mb-8">
-              We deliver our products as fast as super-man can do
-            </h2>
-            <p className="text-base md:text-lg font-medium leading-[1.8] text-[#555555] mb-12 max-w-[480px]">
-              Our distribution network is mathematically optimized to ensure your order arrives at peak temperature.
-            </p>
+            <motion.p 
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.2 }}
+              className="text-[15px] text-gray-400 mb-12 max-w-[480px] leading-relaxed"
+            >
+              Pick one of our stock themes, or create your custom theme with the most advanced theme editor on any online survey building tool.
+            </motion.p>
 
-            <div className="flex flex-col gap-8">
-              {points.map((pt, i) => (
-                <div key={i} className="flex gap-6 items-start">
-                  <span className="text-[24px] font-black text-[#F8991D] leading-none">{pt.num}</span>
-                  <div>
-                    <h3 className="text-[18px] font-extrabold text-[#111111] mb-2">{pt.title}</h3>
-                    <p className="text-[14px] font-medium leading-[1.6] text-[#555555] max-w-[400px]">{pt.desc}</p>
+            {/* FEATURE LIST */}
+            <div className="space-y-10">
+              {features.map((item, index) => (
+                <motion.div 
+                  key={item.id}
+                  initial={{ opacity: 0, x: 20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.3 + (index * 0.1) }}
+                  className="flex gap-6 items-start"
+                >
+                  {/* GHOST NUMBER */}
+                  <span className="text-[48px] md:text-[56px] font-bold text-gray-100 leading-none select-none">
+                    {item.id}
+                  </span>
+                  
+                  {/* TEXT BLOCK */}
+                  <div className="pt-1">
+                    <h4 className="text-[17px] md:text-[18px] font-bold text-brand-charcoal mb-2">
+                      {item.title}
+                    </h4>
+                    <p className="text-[14px] text-gray-400 leading-relaxed max-w-[360px]">
+                      {item.desc}
+                    </p>
                   </div>
-                </div>
+                </motion.div>
               ))}
             </div>
           </div>

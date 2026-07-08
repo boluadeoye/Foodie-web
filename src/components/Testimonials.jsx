@@ -1,69 +1,65 @@
-import { Star, Quote } from 'lucide-react';
+import React from 'react';
+import { motion } from 'framer-motion';
 
-const TESTIMONIALS = [
-  {
-    name: 'Mariana Dickey',
-    role: 'In blogger',
-    text: "OMG! I cannot believe that I got a brand new landing page after getting this template. We are able to use it with modern and trending designs.",
-    rating: 5,
-    initials: 'MD',
-    color: 'bg-[#F8991D]',
-  },
-  {
-    name: 'James Rodriguez',
-    role: 'Restaurant Owner',
-    text: "The dashboard is incredibly intuitive. Within a week, our delivery orders tripled. The customer support is world-class.",
-    rating: 5,
-    initials: 'JR',
-    color: 'bg-teal-500',
-  },
-  {
-    name: 'Aisha Patel',
-    role: 'Food Blogger',
-    text: "I recommend 4Foodies to every restaurateur I know. The onboarding was seamless and results came in within 48 hours.",
-    rating: 5,
-    initials: 'AP',
-    color: 'bg-rose-500',
-  },
-];
+const THREED_ASSET = 'https://res.cloudinary.com/dwbjb3svx/image/upload/v1783510464/blog_assets/wxzqtdbkg8liruqqcvpl.jpg';
 
 export default function Testimonials() {
   return (
-    <section className="py-20 bg-[#F9F3E3]">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-12">
-          <span className="inline-block bg-[#F8991D]/15 text-[#F8991D] text-xs font-black uppercase tracking-widest px-4 py-1.5 rounded-full mb-3">
-            Reviews
-          </span>
-          <h2 className="font-black text-[#1A1A1A] text-3xl sm:text-4xl lg:text-5xl tracking-tight">
-            What people say about us
-          </h2>
-        </div>
+    <section className="w-full bg-white py-20 md:py-32 overflow-hidden">
+      <div className="max-w-6xl mx-auto px-6">
+        
+        {/* ── GRID SYSTEM: HARD SNAP AT 740PX ── */}
+        <div className="grid grid-cols-1 min-[740px]:grid-cols-2 gap-12 items-center">
+          
+          {/* LEFT: CONTENT BLOCK */}
+          <div className="flex flex-col justify-center">
+            <h2 className="text-[32px] md:text-[40px] font-bold text-[#1A1A1A] mb-10 tracking-tight leading-tight">
+              What people say about us
+            </h2>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {TESTIMONIALS.map((t, i) => (
-            <div
-              key={i}
-              className="bg-white rounded-3xl p-7 border border-[#F8991D]/10 shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
-            >
-              <Quote className="w-8 h-8 text-[#F8991D]/30 mb-4" />
-              <div className="flex mb-3">
-                {Array.from({ length: t.rating }).map((_, j) => (
-                  <Star key={j} className="w-4 h-4 fill-[#F8991D] text-[#F8991D]" />
-                ))}
-              </div>
-              <p className="text-[#1A1A1A]/70 text-sm leading-relaxed mb-6">{t.text}</p>
-              <div className="flex items-center gap-3">
-                <div className={`w-10 h-10 ${t.color} rounded-full flex items-center justify-center flex-shrink-0`}>
-                  <span className="text-white font-black text-sm">{t.initials}</span>
+            <div className="relative">
+              {/* DECORATIVE QUOTE */}
+              <span className="absolute left-[-40px] top-[-15px] text-[70px] text-[#E5E5E5] font-serif leading-none select-none opacity-60">
+                “
+              </span>
+              
+              <p className="text-[18px] md:text-[24px] font-serif italic leading-[1.6] text-[#1A1A1A] mb-10">
+                OMG! I cannot believe that I have got a brand new landing page after getting this template we are able to use our most used e-commerce template with modern and trending design.
+              </p>
+
+              {/* AUTHOR BLOCK */}
+              <div className="flex items-center gap-4">
+                <div className="w-14 h-14 rounded-full overflow-hidden bg-[#F9F3E3] border border-gray-100">
+                  <img 
+                    src="https://i.pravatar.cc/150?u=mariana" 
+                    alt="Mariana Dickey" 
+                    className="w-full h-full object-cover"
+                  />
                 </div>
-                <div>
-                  <p className="font-black text-[#1A1A1A] text-sm">{t.name}</p>
-                  <p className="text-[#1A1A1A]/50 text-xs">{t.role}</p>
+                <div className="flex flex-col">
+                  <span className="text-[18px] font-bold text-[#1A1A1A]">Mariana Dickey</span>
+                  <span className="text-[14px] text-[#1A1A1A]/40">UI Designer</span>
                 </div>
               </div>
             </div>
-          ))}
+          </div>
+
+          {/* RIGHT: 3D ASSET BLOCK */}
+          <div className="flex justify-center min-[740px]:justify-end">
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              className="w-full max-w-[550px] min-[740px]:max-w-none"
+            >
+              <img 
+                src={THREED_ASSET} 
+                alt="3D Characters" 
+                className="w-full h-auto object-contain"
+              />
+            </motion.div>
+          </div>
+
         </div>
       </div>
     </section>
