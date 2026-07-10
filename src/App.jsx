@@ -12,18 +12,20 @@ import FooterCTA from './components/FooterCTA';
 
 function App() {
   return (
-    <main className="bg-white min-h-screen font-sans selection:bg-[#F8991D] selection:text-white overflow-x-hidden">
+    <div className="min-h-screen bg-white selection:bg-[#F8991D] selection:text-white">
       <Navbar />
-      <Hero />
-      <AvailableFood />
-      <HowItWorks />
-      <SupermanDelivery />
-      <WhyChooseUs />
-      <FAQ />
-      <Testimonials />
-      <AppDownload />
-      <FooterCTA />
-    </main>
+      <main>
+        <Hero />
+        <AvailableFood />
+        <HowItWorks />
+        <SupermanDelivery />
+        <WhyChooseUs />
+        <FAQ />
+        <Testimonials />
+        <AppDownload />
+        <FooterCTA />
+      </main>
+    </div>
   );
 }
 

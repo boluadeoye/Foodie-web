@@ -2,14 +2,14 @@
 
 @theme {
   --color-brand-orange: #F8991D;
-  --color-brand-cream: #F9F3E3;
+  --color-brand-cream: #FFF9E9;
   --color-brand-charcoal: #1A1A1A;
   --font-sans: "Inter", "Outfit", system-ui, sans-serif;
 }
 
 @layer base {
   body {
-    background-color: var(--color-brand-cream);
+    background-color: #FFF9E9;
     color: var(--color-brand-charcoal);
     font-family: var(--font-sans);
     margin: 0;
@@ -19,7 +19,6 @@
 }
 
 @utility stage-overflow-fix {
-  overflow: hidden;
   position: relative;
   width: 100%;
   min-height: 100vh;
